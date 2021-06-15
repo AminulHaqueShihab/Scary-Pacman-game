@@ -1,0 +1,154 @@
+<html>
+<canvas id="gameCanvas" width="400" height="400"></canvas>
+
+<script>
+var canvas;
+var canvasContext;
+var snackX = 10;
+var snackY = 10;
+var snackSpeedX = 2;
+var snackSpeedY = 2;
+var gs=tc=20;
+var ax=ay=15;
+trail=[];
+tail = 5;
+window.onload = function(){
+	canvas = document.getElementById('gameCanvas');
+	canvasContext = canvas.getContext('2d');
+	document.addEventListener("keydown",keyPush);
+	var fps = 30;
+	setInterval(game, 1000/fps);
+}
+function moveSnack(){
+	snackX = snackX + snackSpeedX;
+	if(snackX > canvas.width){
+		snackX = 800 - snackX;
+	}
+}
+
+
+function drawSnack(){
+
+	//make screen black
+	colorRect(0, 0, canvas.width, canvas.height, 'black');
+	
+	//color of the snake
+	//colorRect(snackX, 300, 250, 50, 'red');
+	
+	
+	
+	colorCircle(snackX+200, snackY+500, 50, 'yellow');
+	canvasContext.strokeStyle = '#000';
+    canvasContext.stroke();
+	colorCircle(snackX+180, snackY+490, 8, 'black');
+	colorCircle(snackX+220, snackY+490, 8, 'black');
+	//colorCircle(200, 520, 11, 'black');
+	canvasContext.fillStyle = 'white';
+	canvasContext.beginPath();
+	canvasContext.arc(snackX+200, snackY+515, 20, 0, Math.PI, false);
+	canvasContext.fill();
+	canvasContext.strokeStyle = '#000';
+    canvasContext.stroke();
+}
+
+function game() {
+    snackX+=snackSpeedX;
+    snackY+=snackSpeedY;
+    if(snackX<0) {
+        snackX= tc-1;
+    }
+    if(snackX>tc-1) {
+        snackX= 0;
+    }
+    if(snackY<0) {
+        snackY= tc-1;
+    }
+    if(snackY>tc-1) {
+        snackY= 0;
+    }
+    canvasContext.fillStyle="black";
+    canvasContext.fillRect(0,0,canvas.width,canvas.height);
+ 
+    canvasContext.fillStyle="lime";
+    for(var i=0;i<trail.length;i++) {
+        canvasContext.fillRect(trail[i].x*gs,trail[i].y*gs,gs-2,gs-2);
+        if(trail[i].x==snackX && trail[i].y==snackY) {
+            tail = 5;
+        }
+    }
+    trail.push({x:snackX,y:snackY});
+    while(trail.length>tail) {
+    trail.shift();
+    }
+ 
+    if(ax==snackX && ay==snackY) {
+        tail++;
+        ax=Math.floor(Math.random()*tc);
+        ay=Math.floor(Math.random()*tc);
+    }
+    canvasContext.fillStyle="red";
+    canvasContext.fillRect(ax*gs,ay*gs,gs-2,gs-2);
+}
+
+function keyPush(evt) {
+    switch(evt.keyCode) {
+        case 37:
+            snackSpeedX=-1;snackSpeedY=0;
+            break;
+        case 38:
+            snackSpeedX=0;snackSpeedY=-1;
+            break;
+        case 39:
+            snackSpeedX=1;snackSpeedY=0;
+            break;
+        case 40:
+            snackSpeedX=0;snackSpeedY=1;
+            break;
+    }
+}
+
+
+
+
+function colorCircle(centerX, centerY, radius, drawColor){
+	canvasContext.fillStyle = drawColor;
+	canvasContext.beginPath();
+	canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
+	canvasContext.fill();
+}
+
+function colorRect(leftX, topY, width, height, drawColor){
+	canvasContext.fillStyle = drawColor;
+	canvasContext.fillRect(leftX, topY, width, height);
+}
+
+function drawPacman(pctOpen) {
+  // Convert percent open to a float
+  var fltOpen = pctOpen / 100;
+ 
+  // Clear the canvas to draw the next part of the animation
+  context.clearRect(0, 0, canvas.width, canvas.height);
+   
+  // An arc which stops at a specific percent to allow for the
+  // open mouth to be drawn
+  context.beginPath();
+  context.arc(100, 100, 100, fltOpen * 0.2 * Math.PI, (2 - fltOpen * 0.2) * Math.PI);
+ 
+  // The line leading back to the center and then closing the
+  // path to finish the open mouth.
+  context.lineTo(100, 100);
+  context.closePath();
+ 
+  // Fill pacman's head yellow
+  context.fillStyle = "#FF0";
+  context.fill();
+   
+  // Outline the head
+  context.strokeStyle = '#000';
+  context.stroke();
+}
+
+
+</script>
+
+</html>

@@ -1,0 +1,6 @@
+#gameCanvas {
+    background-color: rgb(0, 0, 0);
+    border: 5px solid rgb(0, 255, 128);
+    align-self: center;
+    align-content: center;
+}
