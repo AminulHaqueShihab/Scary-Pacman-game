@@ -27,6 +27,8 @@ function setupCanvas(){
         //importing images.
         var pacman = new Image();
         pacman.src = "img/pacman.png";
+        var pacman2 = new Image();
+        pacman2.src = "img/pacman 2.png";
         var ghost = new Image();
         ghost.src = "img/ghost.png";
         var pumpkin = new Image();
@@ -109,20 +111,40 @@ function setupCanvas(){
         var code=event.which;
         if(code==37){
             event.preventDefault();
-            xv=xv*-1;
-            yv=yv;
+            if(xv<0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv*-1;
+                yv=yv;
+            }
         }else if(code==38){
             event.preventDefault();
-            xv=xv;
-            yv=yv*-1;
+            if(yv<0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv;
+                yv=yv*-1;
+            }
         }else if(code==39){
             event.preventDefault();
-            xv=xv*-1;
-            yv=yv;
+            if(xv>0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv*-1;
+                yv=yv;
+            }
         }else if(code==40){
             event.preventDefault();
-            yv=yv*-1;
-            xv=xv;
+            if(yv>0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv;
+                yv=yv*-1;
+            }
         }
     });
 
@@ -148,8 +170,13 @@ function setupCanvas(){
         layout.clearRect(0,0, canvas.width, canvas.height);
         layout.drawImage(ghost, xPosGst1, yPosGst1, 40, 40);
         layout.drawImage(ghost, xPosGst2, yPosGst2, 40, 40);	
-        layout.drawImage(pumpkin, xPosPum, yPosPum, 40, 40);							
-        layout.drawImage(pacman, xPosPac, yPosPac, 100, 100);
+        layout.drawImage(pumpkin, xPosPum, yPosPum, 40, 40);
+        if(xv>0){
+            layout.drawImage(pacman, xPosPac, yPosPac, 100, 100);
+        }else{
+            layout.drawImage(pacman2, xPosPac, yPosPac, 100, 100);
+        }							
+        
         layout.fillStyle="white";
         layout.font = "20px Arial";
         layout.fillText("Score: "+score, 1350,30);
