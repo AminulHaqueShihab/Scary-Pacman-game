@@ -31,8 +31,8 @@ function setupCanvas(){
         pacman2.src = "img/pacman 2.png";
         var ghost = new Image();
         ghost.src = "img/ghost.png";
-        var pumpkin = new Image();
-        pumpkin.src = "img/pumpkin.png";
+        var apple = new Image();
+        apple.src = "img/apple.png";
 
         var fps = 30;
         pacman.onload= function(){
@@ -109,7 +109,8 @@ function setupCanvas(){
 
     document.addEventListener("keydown", function(event){
         var code=event.which;
-        if(code==37){
+        console.log(code);
+        if(code==37 || code==65){
             event.preventDefault();
             if(xv<0){
                 xv=xv;
@@ -118,7 +119,7 @@ function setupCanvas(){
                 xv=xv*-1;
                 yv=yv;
             }
-        }else if(code==38){
+        }else if(code==38 || code==87){
             event.preventDefault();
             if(yv<0){
                 xv=xv;
@@ -127,7 +128,7 @@ function setupCanvas(){
                 xv=xv;
                 yv=yv*-1;
             }
-        }else if(code==39){
+        }else if(code==39 || code==68){
             event.preventDefault();
             if(xv>0){
                 xv=xv;
@@ -136,7 +137,7 @@ function setupCanvas(){
                 xv=xv*-1;
                 yv=yv;
             }
-        }else if(code==40){
+        }else if(code==40 || code==83){
             event.preventDefault();
             if(yv>0){
                 xv=xv;
@@ -170,7 +171,7 @@ function setupCanvas(){
         layout.clearRect(0,0, canvas.width, canvas.height);
         layout.drawImage(ghost, xPosGst1, yPosGst1, 40, 40);
         layout.drawImage(ghost, xPosGst2, yPosGst2, 40, 40);	
-        layout.drawImage(pumpkin, xPosPum, yPosPum, 40, 40);
+        layout.drawImage(apple, xPosPum, yPosPum, 50, 50);
         if(xv>0){
             layout.drawImage(pacman, xPosPac, yPosPac, 100, 100);
         }else{
@@ -182,7 +183,7 @@ function setupCanvas(){
         layout.fillText("Score: "+score, 1350,30);
         layout.fillStyle="white";
         layout.font = "20px Arial";
-        layout.fillText("Eat the pumpkin and avoid the Ghosts", 20,30);
+        layout.fillText("Eat the apple and avoid the Ghosts", 20,30);
     }
 
 }
