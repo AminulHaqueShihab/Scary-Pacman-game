@@ -58,21 +58,21 @@ function setupCanvas(){
                     musicSound.pause();
                     clearInterval(gameLoop);
                     layout.fillStyle="grey";
-                    layout.fillRect(440,90,620,520);
+                    layout.fillRect(250,90,520,420);
                     layout.fillStyle="white";
-                    layout.fillRect(450,100,600,500);
-                    layout.fillStyle ="black";
-                    layout.font = "50px Arial";
-                    layout.fillText("Oppsss..", 655, 250);
-                    layout.fillStyle ="black";
-                    layout.font = "90px Arial";
-                    layout.fillText("Game Over", 520, 350);
+                    layout.fillRect(260,100,500,400);
                     layout.fillStyle ="black";
                     layout.font = "40px Arial";
-                    layout.fillText("Scored: "+score, 660, 430);
+                    layout.fillText("Oppsss...", 430, 220);
+                    layout.fillStyle ="black";
+                    layout.font = "80px Arial";
+                    layout.fillText("Game Over", 305, 300);
+                    layout.fillStyle ="black";
+                    layout.font = "30px Arial";
+                    layout.fillText("Scored: "+score, 440, 350);
                     layout.fillStyle ="black";
                     layout.font = "20px Arial";
-                    layout.fillText("Press 'F5' or Refresh the page to play again", 555, 580);
+                    layout.fillText("Press 'F5' or Refresh the page to play again", 325, 490);
                 }
             }, 1000/fps);
             }
@@ -80,9 +80,9 @@ function setupCanvas(){
     
     function pointEaten(){
         if(xPosPac < xPosPum + 40 &&
-            xPosPac + 100 > xPosPum &&
+            xPosPac + 80 > xPosPum &&
             yPosPac < yPosPum + 40 &&
-            yPosPac + 100 > yPosPum)
+            yPosPac + 80 > yPosPum)
         {
             return true;
         }else{
@@ -155,13 +155,13 @@ function setupCanvas(){
         if(yPosPac<=0){
             yv=-yv;
         }
-        if((yPosPac+100)>=canvas.height){
+        if((yPosPac+80)>=canvas.height){
             yv=-yv;
         }
         if(xPosPac<0){
             xv=-xv;
         }
-        if(xPosPac+100>canvas.width){
+        if(xPosPac+80>canvas.width){
             xv=-xv;
         }
         
@@ -173,17 +173,62 @@ function setupCanvas(){
         layout.drawImage(ghost, xPosGst2, yPosGst2, 40, 40);	
         layout.drawImage(apple, xPosPum, yPosPum, 50, 50);
         if(xv>0){
-            layout.drawImage(pacman, xPosPac, yPosPac, 100, 100);
+            layout.drawImage(pacman, xPosPac, yPosPac, 80, 80);
         }else{
-            layout.drawImage(pacman2, xPosPac, yPosPac, 100, 100);
+            layout.drawImage(pacman2, xPosPac, yPosPac, 80, 80);
         }							
         
         layout.fillStyle="white";
         layout.font = "20px Arial";
-        layout.fillText("Score: "+score, 1350,30);
+        layout.fillText("Score: "+score, 870,30);
         layout.fillStyle="white";
         layout.font = "20px Arial";
         layout.fillText("Eat the apple and avoid the Ghosts", 20,30);
     }
 
+    //On Screen Button
+    function moveUp(){
+        event.preventDefault();
+        if(yv<0){
+            xv=xv;
+            yv=yv;
+        }else{
+            xv=xv;
+            yv=yv*-1;
+        }
+    }
+    function moveLeft(){
+        event.preventDefault();
+            if(xv<0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv*-1;
+                yv=yv;
+            }
+    }
+    function moveRight(){
+        event.preventDefault();
+            if(xv>0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv*-1;
+                yv=yv;
+            }
+    }
+    function moveDown(){
+        event.preventDefault();
+            if(yv>0){
+                xv=xv;
+                yv=yv;
+            }else{
+                xv=xv;
+                yv=yv*-1;
+            }
+    }
+    document.getElementById("btn1").addEventListener("click",moveUp);
+    document.getElementById("btn2").addEventListener("click",moveLeft);
+    document.getElementById("btn3").addEventListener("click",moveRight);
+    document.getElementById("btn4").addEventListener("click",moveDown);
 }

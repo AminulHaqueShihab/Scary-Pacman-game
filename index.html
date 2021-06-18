@@ -4,11 +4,43 @@
 		<meta charset="utf-8">
 		<title>Scary Pacman</title>
 		<link rel="stylesheet" href="css/style.css">
-		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	</head>
 
-	<body onload="setupCanvas();">
-		<canvas id="gameCanvas" width="1500" height="730"></canvas>
+	<body onload="setupCanvas();" background="img/dark.jpg">
+		<div>
+			<div class="div-canvas">
+				<canvas id="gameCanvas" width="1000" height="600"></canvas>
+				
+			</div>
+			<div class="btn">
+
+				<div class="btn_arr" >
+					<button class="btn-1" id="btn1">
+						<i class="fas fa-arrow-up"></i>
+					</button>
+				</div>
+			
+			<div>
+				<div class="btn_arr">
+					<button class="btn-2" id="btn2">
+						<i class="fas fa-arrow-left"></i>
+					</button>
+	
+					<button class="btn-3" id="btn3">
+						<i class="fas fa-arrow-right"></i>
+					</button>
+				</div>
+			</div>
+			<div>
+				<div class="btn_arr">
+					<button class="btn-4" id="btn4">
+						<i class="fas fa-arrow-down"></i>
+					</button>
+				</div>
+			</div>
+			</div>
+		</div>
 	</body>
 	<script src="js/index.js"></script>
 </html>
