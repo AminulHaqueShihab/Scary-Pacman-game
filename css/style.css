@@ -35,6 +35,8 @@
     background-color: rgb(255, 255, 255);
     padding: 30px 30px;
     left: 85px;
+    font-size: 20px;
+    font-weight: 500;
     /* margin: 20px; */
 }
 
@@ -45,7 +47,8 @@
     background-color: rgb(255, 255, 255);
     padding: 30px 30px;
     margin: 20px;
-    
+    font-size: 20px;
+    font-weight: 500;
 }
 .btn-3{
     border:5px solid rgb(50, 235, 127);
@@ -54,6 +57,8 @@
     background-color: rgb(255, 255, 255);
     padding: 30px 30px;
     margin: 20px;
+    font-size: 20px;
+    font-weight: 500;
 }
 .btn-4{
     border:5px solid rgb(50, 235, 127);
@@ -62,7 +67,8 @@
     background-color: rgb(255, 255, 255);
     padding: 30px 30px;
     left: 85px;
-    
+    font-size: 20px;
+    font-weight: 500;
 }
 .btn-1:hover {background-color: rgb(50, 235, 127)}
 .btn-2:hover {background-color: rgb(50, 235, 127)}
